@@ -59,3 +59,33 @@ def test_generate_report_empty_findings():
     )
     report = generate_report(meta, [])
     assert "No security issues detected" in report
+
+
+def test_generate_report_ai_failure_reason():
+    finding = Finding(
+        id="finding-1",
+        detector="reentrancy-eth",
+        severity=Severity.HIGH,
+        description="Reentrancy in withdraw",
+        ai=AIExplanation(
+            title="reentrancy-eth",
+            problem="Reentrancy in withdraw",
+            impact="AI explanation unavailable because no API key is configured",
+            recommendation="Set the provider API key or pass one with the audit request",
+            ai_success=False,
+            provider="openai",
+            error="No API key configured for openai",
+        ),
+    )
+    meta = AuditMeta(
+        task_id="failed-ai-task",
+        status=AuditStatus.COMPLETED,
+        filename="reentrancy-example.zip",
+        created_at="2026-01-01T00:00:00+00:00",
+        updated_at="2026-01-01T00:00:00+00:00",
+    )
+
+    report = generate_report(meta, [finding])
+
+    assert "| AI explained | 0 |" in report
+    assert "AI explanation**: Unavailable (No API key configured for openai)" in report

@@ -20,9 +20,14 @@ router = APIRouter()
 _semaphore = asyncio.Semaphore(3)
 
 
-async def _run_audit_task(task_id: str, project_path, api_key: Optional[str]) -> None:
+async def _run_audit_task(
+    task_id: str,
+    project_path,
+    api_key: Optional[str],
+    ai_provider: Optional[str],
+) -> None:
     async with _semaphore:
-        await audit.run_audit_pipeline(task_id, project_path, api_key)
+        await audit.run_audit_pipeline(task_id, project_path, api_key, ai_provider)
 
 
 @router.get("/health", response_model=HealthResponse)
@@ -37,6 +42,9 @@ async def health_check():
         details={
             "max_upload_mb": settings.max_upload_mb,
             "slither_timeout_sec": settings.slither_timeout_sec,
+            "ai_provider": settings.ai_provider,
+            "openai_configured": bool(settings.openai_api_key),
+            "claude_configured": bool(settings.anthropic_api_key),
         },
     )
 
@@ -46,13 +54,19 @@ async def create_audit(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
     api_key: Optional[str] = Form(None),
+    ai_provider: Optional[str] = Form(None),
 ):
+    provider = (ai_provider or settings.ai_provider).lower()
+    if provider not in {"openai", "claude"}:
+        raise HTTPException(status_code=400, detail=f"Unsupported AI provider: {provider}")
+
     task_id, job_dir = storage.create_job(file.filename or "project.zip")
     project_path = await upload.save_and_extract_zip(file, job_dir)
 
-    effective_key = api_key or settings.openai_api_key or None
+    configured_key = settings.anthropic_api_key if provider == "claude" else settings.openai_api_key
+    effective_key = api_key or configured_key or None
 
-    background_tasks.add_task(_run_audit_task, task_id, project_path, effective_key)
+    background_tasks.add_task(_run_audit_task, task_id, project_path, effective_key, provider)
 
     return CreateAuditResponse(task_id=task_id)
 

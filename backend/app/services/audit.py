@@ -14,6 +14,7 @@ async def run_audit_pipeline(
     task_id: str,
     project_path: Path,
     api_key: Optional[str] = None,
+    ai_provider: Optional[str] = None,
 ) -> None:
     start = time.time()
     slither_version = "unknown"
@@ -41,7 +42,7 @@ async def run_audit_pipeline(
             f"Slither finished with {len(findings)} finding(s); running AI explanations...",
         )
 
-        explained = await ai.explain_findings(findings, api_key or "")
+        explained = await ai.explain_findings(findings, api_key or "", provider_name=ai_provider)
         storage.save_findings(task_id, explained)
 
         summary = build_summary(explained)

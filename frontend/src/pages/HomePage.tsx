@@ -7,6 +7,7 @@ export default function HomePage() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [apiKey, setApiKey] = useState("");
+  const [aiProvider, setAiProvider] = useState<"openai" | "claude">("openai");
   const [dragging, setDragging] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -35,7 +36,7 @@ export default function HomePage() {
     setLoading(true);
     setError("");
     try {
-      const { task_id } = await createAudit(file, apiKey || undefined);
+      const { task_id } = await createAudit(file, apiKey || undefined, aiProvider);
       navigate(`/audit/${task_id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");
@@ -102,11 +103,21 @@ export default function HomePage() {
 
         <div style={{ marginTop: "1.25rem" }}>
           <label style={{ display: "block", marginBottom: "0.4rem", fontSize: "0.9rem" }}>
-            OpenAI API Key (optional, for AI explanations)
+            AI Provider
+          </label>
+          <select value={aiProvider} onChange={(e) => setAiProvider(e.target.value as "openai" | "claude")}>
+            <option value="openai">OpenAI compatible</option>
+            <option value="claude">Claude</option>
+          </select>
+        </div>
+
+        <div style={{ marginTop: "1rem" }}>
+          <label style={{ display: "block", marginBottom: "0.4rem", fontSize: "0.9rem" }}>
+            API Key (optional, for AI explanations)
           </label>
           <input
             type="password"
-            placeholder="sk-..."
+            placeholder={aiProvider === "claude" ? "sk-ant-..." : "sk-..."}
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
           />

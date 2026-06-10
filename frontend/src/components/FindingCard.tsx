@@ -24,12 +24,24 @@ export default function FindingCard({ finding }: { finding: Finding }) {
 
       {finding.ai_expanded && finding.ai.ai_success ? (
         <>
+          {finding.ai.provider && (
+            <p style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
+              AI provider: <code>{finding.ai.provider}</code>
+            </p>
+          )}
           <p><strong>Problem:</strong> {finding.ai.problem}</p>
           <p style={{ marginTop: "0.5rem" }}><strong>Impact:</strong> {finding.ai.impact}</p>
           <p style={{ marginTop: "0.5rem" }}><strong>Recommendation:</strong> {finding.ai.recommendation}</p>
         </>
       ) : (
-        <p>{finding.description}</p>
+        <>
+          {finding.ai_expanded && finding.ai.error && (
+            <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginBottom: "0.5rem" }}>
+              AI explanation unavailable: {finding.ai.error}
+            </p>
+          )}
+          <p>{finding.description}</p>
+        </>
       )}
 
       {!finding.ai_expanded && (

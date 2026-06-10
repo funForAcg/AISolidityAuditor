@@ -43,6 +43,8 @@ class AIExplanation(BaseModel):
     impact: str = ""
     recommendation: str = ""
     ai_success: bool = False
+    provider: Optional[str] = None
+    error: Optional[str] = None
 
 
 class Finding(BaseModel):

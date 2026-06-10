@@ -7,14 +7,18 @@ services:
       - "8000:8000"
     volumes:
       - audit-data:/data/jobs
+    env_file:
+      - path: ./backend/.env
+        required: false
     environment:
       - DATA_DIR=/data/jobs
       - MAX_UPLOAD_MB=10
       - SLITHER_TIMEOUT_SEC=120
       - MAX_AI_FINDINGS=20
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - AI_PROVIDER=${AI_PROVIDER:-openai}
       - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.openai.com/v1}
       - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-3-5-haiku-latest}
       - CORS_ORIGINS=*
     restart: unless-stopped
 

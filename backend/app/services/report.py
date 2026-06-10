@@ -86,6 +86,8 @@ def generate_report(
                 lines.append(f"- **Function**: `{finding.function}`")
 
             if finding.ai_expanded and finding.ai.ai_success:
+                if finding.ai.provider:
+                    lines.append(f"- **AI provider**: `{finding.ai.provider}`")
                 lines.append(f"- **Problem**: {finding.ai.problem}")
                 lines.append(f"- **Impact**: {finding.ai.impact}")
                 lines.append(f"- **Recommendation**: {finding.ai.recommendation}")
@@ -93,6 +95,10 @@ def generate_report(
                 lines.append("- **AI explanation**: Not expanded (exceeds AI explanation limit)")
                 lines.append(f"- **Original description**: {finding.description}")
             else:
+                if finding.ai.provider:
+                    lines.append(f"- **AI provider**: `{finding.ai.provider}`")
+                if finding.ai.error:
+                    lines.append(f"- **AI explanation**: Unavailable ({finding.ai.error})")
                 lines.append(f"- **Original description**: {finding.description}")
 
             lines.append(f"- **Slither detector**: `{finding.detector}`")

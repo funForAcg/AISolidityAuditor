@@ -39,6 +39,8 @@ export interface AIExplanation {
   impact: string;
   recommendation: string;
   ai_success: boolean;
+  provider?: string;
+  error?: string;
 }
 
 export interface Finding {
@@ -63,11 +65,13 @@ const API_BASE = "/api";
 
 export async function createAudit(
   file: File,
-  apiKey?: string
+  apiKey?: string,
+  aiProvider?: "openai" | "claude"
 ): Promise<{ task_id: string }> {
   const form = new FormData();
   form.append("file", file);
   if (apiKey) form.append("api_key", apiKey);
+  if (aiProvider) form.append("ai_provider", aiProvider);
 
   const res = await fetch(`${API_BASE}/v1/audits`, {
     method: "POST",

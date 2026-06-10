@@ -220,9 +220,12 @@ Copy [backend/.env.example](backend/.env.example) to `backend/.env` or pass vari
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `DATA_DIR` | `./data/jobs` | Job storage directory |
+| `AI_PROVIDER` | `openai` | Default AI provider (`openai` or `claude`) |
 | `OPENAI_API_KEY` | — | API key (optional if sent per request) |
 | `OPENAI_BASE_URL` | `https://api.openai.com/v1` | OpenAI-compatible endpoint |
 | `OPENAI_MODEL` | `gpt-4o-mini` | Model for explanations |
+| `ANTHROPIC_API_KEY` | - | Claude API key (optional if sent per request) |
+| `CLAUDE_MODEL` | `claude-3-5-haiku-latest` | Claude model for explanations |
 | `MAX_UPLOAD_MB` | `10` | Maximum ZIP upload size |
 | `SLITHER_TIMEOUT_SEC` | `120` | Slither subprocess timeout |
 | `MAX_AI_FINDINGS` | `20` | Max findings to send to AI |

@@ -61,6 +61,8 @@ async def test_explain_finding_without_api_key():
 
     assert result.ai_success is False
     assert "API key" in result.impact
+    assert result.provider == "openai"
+    assert result.error == "No API key configured for openai"
 
 
 @pytest.mark.asyncio
@@ -76,7 +78,7 @@ async def test_explain_findings_respects_limit():
     ]
 
     with patch(
-        "app.services.ai.explain_finding",
+        "app.services.ai.ai_service.explain_finding",
         new_callable=AsyncMock,
         return_value=AIExplanation(
             title="mock",
@@ -92,3 +94,18 @@ async def test_explain_findings_respects_limit():
     assert result[0].ai_expanded is True
     assert result[1].ai_expanded is True
     assert result[2].ai_expanded is False
+
+
+@pytest.mark.asyncio
+async def test_explain_findings_records_provider_failure():
+    finding = _sample_finding()
+
+    with patch("app.services.ai.settings") as mock_settings:
+        mock_settings.ai_provider = "claude"
+        mock_settings.anthropic_api_key = ""
+        mock_settings.max_ai_findings = 20
+        result = await explain_findings([finding], api_key="")
+
+    assert result[0].ai.ai_success is False
+    assert result[0].ai.provider == "claude"
+    assert result[0].ai.error == "No API key configured for claude"
