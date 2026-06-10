@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Data
+data/
+backend/data/
+
+# Build
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+
+# Env
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

@@ -1,0 +1,25 @@
+{
+  "results": {
+    "detectors": [
+      {
+        "check": "reentrancy-eth",
+        "impact": "High",
+        "description": "Reentrancy in VulnerableBank.withdraw(uint256)",
+        "elements": [
+          {
+            "type": "function",
+            "name": "withdraw",
+            "source_mapping": {
+              "filename_short": "Reentrancy.sol",
+              "lines": [15]
+            }
+          },
+          {
+            "type": "contract",
+            "name": "VulnerableBank"
+          }
+        ]
+      }
+    ]
+  }
+}
