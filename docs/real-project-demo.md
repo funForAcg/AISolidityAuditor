@@ -41,7 +41,9 @@ Each row links to evidence that the full chain (Action, SARIF code-scanning uplo
 
 | Date | Trigger | Action run | Code scanning | PR comment |
 |------|---------|------------|---------------|------------|
-| _pending_ | _pending_ | _pending_ | _pending_ | _pending_ |
+| 2026-06-11 | [PR #1](https://github.com/PXLabs-code/AISolidityAuditor/pull/1) (`pull_request`) | [#27333809196](https://github.com/PXLabs-code/AISolidityAuditor/actions/runs/27333809196) | [117 results, category `action-e2e-solmate`](https://github.com/PXLabs-code/AISolidityAuditor/security/code-scanning?query=tool%3AAISolidityAuditor) | [triage report comment](https://github.com/PXLabs-code/AISolidityAuditor/pull/1#issuecomment-4678610108) |
+
+The 2026-06-11 run uploaded the `aisolidityauditor-results` (Slither triage + SARIF) and `aisolidityauditor-glamsterdam-readiness` artifacts, published 117 SARIF results to code scanning under the `AISolidityAuditor` tool name, and posted the Markdown triage report as a PR comment — covering every leg of the Action chain described above.
 
 ## Candidate repositories
 
