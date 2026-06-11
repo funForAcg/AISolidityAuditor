@@ -49,6 +49,8 @@ def check_solc_available() -> bool:
 
 def run_slither(project_path: Path, output_path: Path) -> dict[str, Any]:
     workdir = project_path if project_path.is_dir() else project_path.parent
+    if output_path.exists():
+        output_path.unlink()
     cmd = [
         "slither",
         str(project_path),
