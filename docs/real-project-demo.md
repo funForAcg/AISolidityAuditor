@@ -4,9 +4,9 @@ This guide demonstrates AISolidityAuditor on public Solidity repositories, not o
 
 ## Published demo artifacts
 
-| Repository | Commit | Artifacts |
-|------------|--------|-----------|
-| [transmissions11/solmate](https://github.com/transmissions11/solmate) | `89365b880c4f3c786bdd453d4b8e8fe410344a69` | [docs/demo-artifacts/transmissions11-solmate/89365b880c4f3c786bdd453d4b8e8fe410344a69/](demo-artifacts/transmissions11-solmate/89365b880c4f3c786bdd453d4b8e8fe410344a69/README.md) |
+| Repository | Commit | Action run | Artifacts |
+|------------|--------|------------|-----------|
+| [transmissions11/solmate](https://github.com/transmissions11/solmate) | `89365b880c4f3c786bdd453d4b8e8fe410344a69` | [#27331627981](https://github.com/PXLabs-code/AISolidityAuditor/actions/runs/27331627981) | [demo artifacts](demo-artifacts/transmissions11-solmate/89365b880c4f3c786bdd453d4b8e8fe410344a69/README.md) |
 
 Reproduce or refresh a demo locally:
 

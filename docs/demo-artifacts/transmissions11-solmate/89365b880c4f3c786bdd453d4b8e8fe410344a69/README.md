@@ -2,27 +2,33 @@
 
 ## Repository
 
-- **Repo**: [transmissions11/solmate](https://github.com/transmissions11/solmate)
+- **Repo**: `https://github.com/transmissions11/solmate`
 - **Commit SHA**: `89365b880c4f3c786bdd453d4b8e8fe410344a69`
-- **Commit title**: Update LICENSE (2025-07-21)
-- **Project path (Slither)**: `.` (Foundry root after `forge build`)
-- **Project path (readiness heuristics)**: `src/`
+- **Project path (Slither)**: `.`
+- **Project path (readiness heuristics)**: `src`
 
 ## Action run
 
-- **Workflow**: [.github/workflows/real-project-demo.yml](../../../.github/workflows/real-project-demo.yml)
-- **Trigger**: `workflow_dispatch` with demo `transmissions11-solmate`
-- **Workflow run**: run after merge via GitHub Actions; URL pattern:
-  `https://github.com/PXLabs-code/AISolidityAuditor/actions/workflows/real-project-demo.yml`
+- **Workflow run**: https://github.com/PXLabs-code/AISolidityAuditor/actions/runs/27331627981
 - **Mode**: `glamsterdam-readiness`
+- **Generated at**: 2026-06-11T07:40:41.686782+00:00
 
-Local generation command (readiness artifacts; full Slither requires Foundry + Slither):
+## Results
 
-```bash
-python scripts/run_real_project_demo.py --demo transmissions11-solmate
-```
+- **Slither findings (reported)**: 5
+- **Glamsterdam readiness findings**: 106
+- **Glamsterdam SARIF rules**: 5
 
-## Results (readiness pass on `src/`)
+## Slither summary (informational excluded)
+
+| Severity | Count |
+|----------|------:|
+| High | 1 |
+| Medium | 1 |
+| Low | 3 |
+| **Total reported** | **5** |
+
+## Readiness summary (`src/`)
 
 | Detector | Count |
 |----------|------:|
@@ -31,26 +37,20 @@ python scripts/run_real_project_demo.py --demo transmissions11-solmate
 | `glamsterdam-eth-transfer-assumption` | 12 |
 | `glamsterdam-block-context` | 17 |
 | `glamsterdam-contract-size-watch` | 3 |
-| **Total readiness findings** | **106** |
 
-Slither triage counts are populated by the GitHub Actions workflow run (`audit-report.md`, `findings.json`, `slither.json`).
+## Artifacts
 
-## Artifacts in this directory
-
-| File | Contents |
-|------|----------|
-| `audit-report.md` | Slither triage report only |
-| `findings.json` | Slither findings only |
-| `slither.json` | Raw Slither JSON |
-| `audit-results.sarif` | Merged SARIF with `tool` / `source` metadata |
-| `glamsterdam-readiness-report.md` | Readiness heuristics only |
-| `glamsterdam-findings.json` | Readiness findings only |
-| `run-metadata.json` | Machine-readable demo metadata |
+- `audit-report.md` — Slither triage only
+- `findings.json` — Slither findings only
+- `slither.json` — raw Slither JSON
+- `audit-results.sarif` — merged SARIF with tool/source metadata
+- `glamsterdam-readiness-report.md` — readiness heuristics only
+- `glamsterdam-findings.json` — readiness findings only
+- `run-metadata.json` — machine-readable metadata
 
 ## Setup notes
 
-- solmate is a Foundry project using `solc 0.8.15`.
-- Run `forge build` before Slither on the repo root.
-- Readiness heuristics intentionally scan `src/` to focus on library contracts rather than vendored `lib/` dependencies.
-- `audit-report.md` and `findings.json` must not contain readiness heuristics.
-- Readiness heuristics appear only in Glamsterdam artifacts and in SARIF rules tagged `readiness-heuristic`.
+- solmate is a Foundry project (`solc 0.8.15`).
+- Workflow runs `forge build` before Slither on the repo root.
+- Readiness heuristics scan `src/` only.
+- `include_informational: false` in the demo workflow, so informational Slither findings are omitted from `findings.json` and `audit-report.md`.

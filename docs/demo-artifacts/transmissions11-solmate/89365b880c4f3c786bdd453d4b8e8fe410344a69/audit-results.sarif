@@ -9,6 +9,48 @@
           "informationUri": "https://github.com/PXLabs-code/AISolidityAuditor",
           "rules": [
             {
+              "id": "incorrect-exp",
+              "name": "incorrect-exp",
+              "shortDescription": {
+                "text": "incorrect-exp"
+              },
+              "fullDescription": {
+                "text": "Slither detector: incorrect-exp"
+              },
+              "helpUri": "https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-exp",
+              "properties": {
+                "tool": "Slither",
+                "source": "slither",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "slither",
+                  "high"
+                ]
+              }
+            },
+            {
+              "id": "divide-before-multiply",
+              "name": "divide-before-multiply",
+              "shortDescription": {
+                "text": "divide-before-multiply"
+              },
+              "fullDescription": {
+                "text": "Slither detector: divide-before-multiply"
+              },
+              "helpUri": "https://github.com/crytic/slither/wiki/Detector-Documentation#divide-before-multiply",
+              "properties": {
+                "tool": "Slither",
+                "source": "slither",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "slither",
+                  "medium"
+                ]
+              }
+            },
+            {
               "id": "glamsterdam-eth-transfer-assumption",
               "name": "glamsterdam-eth-transfer-assumption",
               "shortDescription": {
@@ -31,6 +73,48 @@
                   "evm-compatibility",
                   "eth-transfer-logs",
                   "contract-size"
+                ]
+              }
+            },
+            {
+              "id": "missing-zero-check",
+              "name": "missing-zero-check",
+              "shortDescription": {
+                "text": "missing-zero-check"
+              },
+              "fullDescription": {
+                "text": "Slither detector: missing-zero-check"
+              },
+              "helpUri": "https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-check",
+              "properties": {
+                "tool": "Slither",
+                "source": "slither",
+                "security-severity": "3.0",
+                "tags": [
+                  "security",
+                  "slither",
+                  "low"
+                ]
+              }
+            },
+            {
+              "id": "timestamp",
+              "name": "timestamp",
+              "shortDescription": {
+                "text": "timestamp"
+              },
+              "fullDescription": {
+                "text": "Slither detector: timestamp"
+              },
+              "helpUri": "https://github.com/crytic/slither/wiki/Detector-Documentation#timestamp",
+              "properties": {
+                "tool": "Slither",
+                "source": "slither",
+                "security-severity": "3.0",
+                "tags": [
+                  "security",
+                  "slither",
+                  "low"
                 ]
               }
             },
@@ -142,6 +226,70 @@
         }
       },
       "results": [
+        {
+          "ruleId": "incorrect-exp",
+          "level": "error",
+          "message": {
+            "text": "MerkleProofLib.verify(bytes32[],bytes32,bytes32) (src/utils/MerkleProofLib.sol#8-47) has bitwise-xor operator ^ instead of the exponentiation operator **: \n\t - mstore(uint256,uint256)(leafSlot_verify_asm_0 ^ 32,calldataload(uint256)(offset_verify_asm_0)) (src/utils/MerkleProofLib.sol#33)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/utils/MerkleProofLib.sol"
+                },
+                "region": {
+                  "startLine": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "High",
+            "source": "slither",
+            "tool": "Slither",
+            "function": "verify",
+            "ai_success": false,
+            "ai_provider": "openai",
+            "ai_error": "No API key configured for openai",
+            "manual_review_required": true,
+            "ai_confidence": "low",
+            "source_start_line": 15,
+            "source_end_line": 43
+          }
+        },
+        {
+          "ruleId": "divide-before-multiply",
+          "level": "warning",
+          "message": {
+            "text": "FixedPointMathLib.rpow(uint256,uint256,uint256) (src/utils/FixedPointMathLib.sol#71-158) performs a multiplication on the result of a division:\n\t- x = xxRound_rpow_asm_0 / scalar (src/utils/FixedPointMathLib.sol#129)\n\t- zx_rpow_asm_0 = z * x (src/utils/FixedPointMathLib.sol#134)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/utils/FixedPointMathLib.sol"
+                },
+                "region": {
+                  "startLine": 134
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "Medium",
+            "source": "slither",
+            "tool": "Slither",
+            "function": "rpow",
+            "ai_success": false,
+            "ai_provider": "openai",
+            "ai_error": "No API key configured for openai",
+            "manual_review_required": true,
+            "ai_confidence": "low",
+            "source_start_line": 116,
+            "source_end_line": 152
+          }
+        },
         {
           "ruleId": "glamsterdam-eth-transfer-assumption",
           "level": "note",
@@ -488,6 +636,100 @@
             "ai_confidence": "low",
             "source_start_line": 52,
             "source_end_line": 56
+          }
+        },
+        {
+          "ruleId": "missing-zero-check",
+          "level": "note",
+          "message": {
+            "text": "Owned.transferOwnership(address).newOwner (src/auth/Owned.sol#39) lacks a zero-check on :\n\t\t- owner = newOwner (src/auth/Owned.sol#40)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/auth/Owned.sol"
+                },
+                "region": {
+                  "startLine": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "Low",
+            "source": "slither",
+            "tool": "Slither",
+            "ai_success": false,
+            "ai_provider": "openai",
+            "ai_error": "No API key configured for openai",
+            "manual_review_required": true,
+            "ai_confidence": "low",
+            "source_start_line": 39,
+            "source_end_line": 43
+          }
+        },
+        {
+          "ruleId": "missing-zero-check",
+          "level": "note",
+          "message": {
+            "text": "Auth.transferOwnership(address).newOwner (src/auth/Auth.sol#48) lacks a zero-check on :\n\t\t- owner = newOwner (src/auth/Auth.sol#49)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/auth/Auth.sol"
+                },
+                "region": {
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "Low",
+            "source": "slither",
+            "tool": "Slither",
+            "ai_success": false,
+            "ai_provider": "openai",
+            "ai_error": "No API key configured for openai",
+            "manual_review_required": true,
+            "ai_confidence": "low",
+            "source_start_line": 48,
+            "source_end_line": 52
+          }
+        },
+        {
+          "ruleId": "timestamp",
+          "level": "note",
+          "message": {
+            "text": "ERC20.permit(address,address,uint256,uint256,uint8,bytes32,bytes32) (src/tokens/ERC20.sol#116-160) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- require(bool,string)(deadline >= block.timestamp,PERMIT_DEADLINE_EXPIRED) (src/tokens/ERC20.sol#125)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/tokens/ERC20.sol"
+                },
+                "region": {
+                  "startLine": 125
+                }
+              }
+            }
+          ],
+          "properties": {
+            "severity": "Low",
+            "source": "slither",
+            "tool": "Slither",
+            "function": "permit",
+            "ai_success": false,
+            "ai_provider": "openai",
+            "ai_error": "No API key configured for openai",
+            "manual_review_required": true,
+            "ai_confidence": "low",
+            "source_start_line": 116,
+            "source_end_line": 160
           }
         },
         {
