@@ -33,7 +33,7 @@ The artifact-generation workflow above does not exercise SARIF upload or PR comm
 3. Slither and readiness artifacts are uploaded as Actions artifacts.
 4. The Markdown triage report is posted as a PR comment (on `pull_request` events).
 
-It triggers on pull requests touching the workflow, `action.yml`, or this document, and can also be run manually:
+It triggers on pull requests touching the workflow, `action.yml`, readiness scan/report code (`backend/app/services/glamsterdam.py`, `backend/app/services/report.py`, `backend/app/models/schemas.py`, `scripts/github_action_audit.py`), or this document, and can also be run manually:
 
 ```bash
 gh workflow run action-e2e-demo.yml
@@ -80,13 +80,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: PXLabs-code/AISolidityAuditor@master
+      - uses: PXLabs-code/AISolidityAuditor@63b8874d67f81aad88b944dca56cf640aa3427d2
         with:
+          project_path: .
+          readiness_path: src
           mode: glamsterdam-readiness
           upload_sarif: "true"
           comment_on_pr: "true"
           include_informational: "false"
 ```
+
+Pin a commit SHA for reproducible CI; use `@master` only when tracking development. For Foundry projects, keep Slither on the repo root (after `forge build`) and point `readiness_path` at `src/` so heuristics match the published solmate demo scope.
 
 Optional AI explanations can be enabled by adding `ai_provider` and the matching API key secret. Readiness heuristics do not depend on AI.
 

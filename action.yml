@@ -26,6 +26,14 @@ inputs:
     description: Solidity project path relative to the caller workspace.
     required: false
     default: "."
+  readiness_path:
+    description: >-
+      Optional path for Glamsterdam readiness heuristics relative to the caller
+      workspace. When empty, readiness scans project_path (entire repo). Set to a
+      subpath such as src/ to match Slither scope and reduce noise from lib/,
+      test/, or build artifacts.
+    required: false
+    default: ""
   output_dir:
     description: Directory for audit-report.md, slither.json, findings.json, and audit-results.sarif.
     required: false
@@ -80,8 +88,13 @@ runs:
     - name: Run Solidity security triage
       shell: bash
       run: |
+        READINESS_ARGS=()
+        if [ -n "${{ inputs.readiness_path }}" ]; then
+          READINESS_ARGS+=(--readiness-project "$GITHUB_WORKSPACE/${{ inputs.readiness_path }}")
+        fi
         python "$GITHUB_ACTION_PATH/scripts/github_action_audit.py" \
           --project "$GITHUB_WORKSPACE/${{ inputs.project_path }}" \
+          "${READINESS_ARGS[@]}" \
           --output-dir "$GITHUB_WORKSPACE/${{ inputs.output_dir }}" \
           --ai-provider "${{ inputs.ai_provider }}" \
           --openai-api-key "${{ inputs.openai_api_key }}" \

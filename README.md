@@ -139,7 +139,7 @@ AISolidityAuditor can run as a security triage step in Solidity repositories. It
 - Optional pull request comment
 - Optional SARIF upload to GitHub code scanning
 
-> **Release status**: the composite action currently lives at the root of this repository (`action.yml`) and is referenced as `PXLabs-code/AISolidityAuditor@master`. A dedicated `AISolidityAuditor-action` repository with a stable `v1` tag is a **planned release** and part of the proposed grant scope. Pin a commit SHA for reproducible CI until the tagged release exists.
+> **Release status**: the composite action lives at the root of this repository (`action.yml`). Examples below pin a known-good commit SHA for reproducible CI. Use `@master` only when tracking development. A dedicated `AISolidityAuditor-action` repository with a stable `v1` tag is a **planned release** and part of the proposed grant scope.
 
 ```yaml
 name: Solidity Security Triage
@@ -158,7 +158,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: PXLabs-code/AISolidityAuditor@master
+      - uses: PXLabs-code/AISolidityAuditor@63b8874d67f81aad88b944dca56cf640aa3427d2
         with:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           ai_provider: openai
@@ -168,7 +168,7 @@ jobs:
 For Claude:
 
 ```yaml
-- uses: PXLabs-code/AISolidityAuditor@master
+- uses: PXLabs-code/AISolidityAuditor@63b8874d67f81aad88b944dca56cf640aa3427d2
   with:
     ai_provider: claude
     anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -177,7 +177,7 @@ For Claude:
 For DeepSeek:
 
 ```yaml
-- uses: PXLabs-code/AISolidityAuditor@master
+- uses: PXLabs-code/AISolidityAuditor@63b8874d67f81aad88b944dca56cf640aa3427d2
   with:
     ai_provider: deepseek
     deepseek_api_key: ${{ secrets.DEEPSEEK_API_KEY }}
@@ -186,7 +186,7 @@ For DeepSeek:
 For a no-AI CI gate that fails on High findings and keeps SARIF focused on primary risks:
 
 ```yaml
-- uses: PXLabs-code/AISolidityAuditor@master
+- uses: PXLabs-code/AISolidityAuditor@63b8874d67f81aad88b944dca56cf640aa3427d2
   with:
     upload_sarif: "true"
     comment_on_pr: "true"
@@ -194,11 +194,13 @@ For a no-AI CI gate that fails on High findings and keeps SARIF focused on prima
     include_informational: "false"
 ```
 
-For a Glamsterdam readiness run aligned with the current ESP Wishlist:
+For a Glamsterdam readiness run aligned with the current ESP Wishlist. Set `readiness_path` to limit heuristic scanning to application source (for example `src/` in Foundry repos) while Slither still analyzes the full `project_path`:
 
 ```yaml
-- uses: PXLabs-code/AISolidityAuditor@master
+- uses: PXLabs-code/AISolidityAuditor@63b8874d67f81aad88b944dca56cf640aa3427d2
   with:
+    project_path: .
+    readiness_path: src
     mode: glamsterdam-readiness
     upload_sarif: "true"
     comment_on_pr: "true"

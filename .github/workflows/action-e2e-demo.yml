@@ -7,6 +7,10 @@ on:
     paths:
       - ".github/workflows/action-e2e-demo.yml"
       - "action.yml"
+      - "backend/app/services/glamsterdam.py"
+      - "backend/app/services/report.py"
+      - "backend/app/models/schemas.py"
+      - "scripts/github_action_audit.py"
       - "docs/real-project-demo.md"
   workflow_dispatch:
 
@@ -40,6 +44,7 @@ jobs:
         uses: ./
         with:
           project_path: .cache/solmate
+          readiness_path: .cache/solmate/src
           mode: glamsterdam-readiness
           upload_sarif: "true"
           comment_on_pr: "true"

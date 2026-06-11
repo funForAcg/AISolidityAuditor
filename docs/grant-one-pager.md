@@ -71,7 +71,7 @@ Suggested allocation:
 
 ## Success metrics
 
-- Action supports `mode: glamsterdam-readiness` with end-to-end CI coverage.
+- Action supports `mode: glamsterdam-readiness` with path-filtered end-to-end Action workflow validation (`action-e2e-demo.yml` on PRs touching the action manifest, readiness scan script, and related backend code — not a claim of full-repo CI matrix coverage).
 - `audit-report.md` and `findings.json` contain Slither evidence only.
 - Readiness report and JSON contain readiness heuristics only.
 - SARIF merges both sources with distinct tool/source metadata and Glamsterdam tags on readiness rules only.

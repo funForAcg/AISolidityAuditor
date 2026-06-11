@@ -28,6 +28,9 @@ services:
     read_only: true
     tmpfs:
       - /tmp:rw,noexec,nosuid,size=256m
+      # solc-select (imported by slither at startup) creates ~/.solc-select at
+      # import time and crashes on a read-only filesystem without this mount.
+      - /root/.solc-select:rw,noexec,nosuid,size=16m
     security_opt:
       - no-new-privileges:true
     cap_drop:

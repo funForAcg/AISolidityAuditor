@@ -200,3 +200,42 @@ def test_run_action_audit_glamsterdam_readiness_end_to_end(tmp_path: Path):
     assert rules["reentrancy-eth"]["properties"]["tool"] == "Slither"
     assert rules["reentrancy-eth"]["properties"]["source"] == "slither"
     assert "glamsterdam" not in rules["reentrancy-eth"]["properties"]["tags"]
+
+
+def test_run_action_audit_glamsterdam_readiness_honors_readiness_project(tmp_path: Path):
+    module = _load_action_module()
+    project = tmp_path / "demo-project"
+    src = project / "src"
+    lib = project / "lib"
+    src.mkdir(parents=True)
+    lib.mkdir()
+    (src / "App.sol").write_text(READINESS_CONTRACT, encoding="utf-8")
+    (lib / "Noise.sol").write_text(
+        "\n".join(
+            [
+                "pragma solidity ^0.8.20;",
+                "contract Noise {",
+                "  function loop() external {",
+                "    for (uint256 i; i < 10; ++i) { block.timestamp; }",
+                "  }",
+                "}",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    output_dir = tmp_path / "results"
+
+    _run_action_audit(
+        module,
+        _make_args(project, output_dir, "glamsterdam-readiness", readiness_project=src),
+        [],
+    )
+
+    readiness_payload = json.loads(
+        (output_dir / "glamsterdam-findings.json").read_text(encoding="utf-8")
+    )
+    files = {item["file"] for item in readiness_payload}
+
+    assert readiness_payload
+    assert all(path.startswith("src/") or path == "App.sol" for path in files)
+    assert not any("lib/" in path or path == "Noise.sol" for path in files)
