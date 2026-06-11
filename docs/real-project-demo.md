@@ -2,11 +2,15 @@
 
 This guide demonstrates AISolidityAuditor on public Solidity repositories, not only toy examples. For the Glamsterdam grant scope, use `mode: glamsterdam-readiness` so CI produces both Slither triage artifacts and separate readiness outputs.
 
-## Published demo artifacts
+## Demo status
 
-| Repository | Commit | Action run | Artifacts |
-|------------|--------|------------|-----------|
-| [transmissions11/solmate](https://github.com/transmissions11/solmate) | `89365b880c4f3c786bdd453d4b8e8fe410344a69` | [#27331627981](https://github.com/PXLabs-code/AISolidityAuditor/actions/runs/27331627981) | [demo artifacts](demo-artifacts/transmissions11-solmate/89365b880c4f3c786bdd453d4b8e8fe410344a69/README.md) |
+The grant one-pager targets at least 2 public repository demos. Current honest status: **1 completed, 2 planned within the grant period**.
+
+| Repository | Status | Commit | Action run | Artifacts |
+|------------|--------|--------|------------|-----------|
+| [transmissions11/solmate](https://github.com/transmissions11/solmate) | **Completed** | `89365b880c4f3c786bdd453d4b8e8fe410344a69` | [#27331627981](https://github.com/PXLabs-code/AISolidityAuditor/actions/runs/27331627981) | [demo artifacts](demo-artifacts/transmissions11-solmate/89365b880c4f3c786bdd453d4b8e8fe410344a69/README.md) |
+| `OpenZeppelin/openzeppelin-contracts` | Planned (grant period) | — | — | — |
+| `Uniswap/v4-core` | Planned (grant period, optional third) | — | — | — |
 
 Reproduce or refresh a demo locally:
 

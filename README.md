@@ -213,6 +213,8 @@ This mode emits the normal Slither triage artifacts plus:
 - `glamsterdam-findings.json`
 - SARIF rule tags such as `glamsterdam`, `gas-repricing`, `evm-compatibility`, `eth-transfer-logs`, and `contract-size`
 
+Each readiness finding carries a rule confidence level (low-confidence rules are intentionally high-recall), a rule rationale, and the related Glamsterdam fork candidates (for example EIP-7732 ePBS, EIP-7928 BALs, EIP-7708 ETH transfer logs). Reviewed matches can be suppressed with inline `// glamsterdam-ignore` markers or a `glamsterdam-baseline.json` file at the scan root.
+
 ## Security model
 
 Uploaded ZIP files are treated as untrusted input.

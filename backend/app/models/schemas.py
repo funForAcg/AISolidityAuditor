@@ -55,6 +55,10 @@ class Finding(BaseModel):
     severity: Severity
     description: str
     source: Literal["slither", "readiness-heuristic"] = "slither"
+    # Readiness-heuristic rule metadata; unset for Slither findings.
+    rule_confidence: Optional[Literal["low", "medium", "high"]] = None
+    rule_rationale: Optional[str] = None
+    related_eips: list[str] = Field(default_factory=list)
     contract: Optional[str] = None
     function: Optional[str] = None
     file: Optional[str] = None

@@ -274,6 +274,8 @@ def generate_sarif(
             "severity": finding.severity.value,
             "source": finding.source,
             "tool": "AISolidityAuditor-GlamsterdamReadiness" if is_readiness else "Slither",
+            "rule_confidence": finding.rule_confidence,
+            "related_eips": finding.related_eips or None,
             "contract": finding.contract,
             "function": finding.function,
             "ai_success": finding.ai.ai_success,

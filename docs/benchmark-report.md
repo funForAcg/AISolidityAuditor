@@ -16,7 +16,7 @@ For each fixture, CI checks:
 - SARIF generation succeeds.
 - Assistive explanation payloads pass the same grounding validator used for AI responses.
 
-The Glamsterdam readiness extension adds source-pattern tests for upgrade-readiness prompts. These checks are intentionally conservative and are measured separately from Slither vulnerability detectors.
+The Glamsterdam readiness extension adds source-pattern tests for upgrade-readiness prompts. These checks are intentionally conservative and are measured separately from Slither vulnerability detectors (see [Glamsterdam readiness precision](#glamsterdam-readiness-precision)).
 
 ## Metrics
 
@@ -31,6 +31,42 @@ The Glamsterdam readiness extension adds source-pattern tests for upgrade-readin
 | AI error / detached-output rate | Unit-tested for known failures | Published per benchmark run |
 | False-positive handling | Clean and false-positive-oriented fixtures included | Add more real clean contracts |
 | Glamsterdam readiness mode | Action mode and SARIF tags implemented | Add public demo artifacts |
+
+## Glamsterdam readiness precision
+
+Readiness rules are review prompts, not vulnerability claims, so their quality is reported separately from Slither detector accuracy. Each rule ships with an explicit confidence level, a rationale, and the fork candidates it tracks; low-confidence rules deliberately trade precision for recall.
+
+### Measured run: transmissions11/solmate `89365b8` (`src/` only)
+
+| Detector | Rule confidence | Matches | Notes |
+|----------|-----------------|--------:|-------|
+| `glamsterdam-low-level-evm` | low | 43 | solmate is an assembly-heavy gas-optimized library, so a high count is expected, not anomalous |
+| `glamsterdam-gas-sensitive-loop` | low | 31 | keyword match cannot see loop bounds; most matches expect quick dismissal |
+| `glamsterdam-block-context` | medium | 17 | includes `block.timestamp` permit deadlines that genuinely interact with ePBS timing assumptions |
+| `glamsterdam-eth-transfer-assumption` | medium | 12 | value-bearing calls and 2300-gas-stipend patterns; most matches are directly relevant |
+| `glamsterdam-contract-size-watch` | low | 3 | file-size proxy; watch points only |
+| **Total** | | **106** | |
+
+### False-positive definition and measurement protocol
+
+A readiness match is counted as a **false positive** when the flagged line has no plausible relationship to the rule's fork-candidate concern (for example, a `for` loop with a small constant bound flagged by `gas-sensitive-loop`, or an `assembly` block doing pure memory arithmetic with no gas/opcode sensitivity).
+
+Per-detector false-positive rate is measured as:
+
+1. Randomly sample up to 20 matches per detector from a pinned demo run.
+2. Two reviewers independently classify each match as *actionable prompt*, *correct but trivially dismissible*, or *false positive*.
+3. Report the false-positive share per detector alongside the rule's stated confidence, and adjust keywords or confidence labels when they disagree.
+
+**Status**: protocol defined; per-detector classification of the solmate run is scheduled within the grant period (Milestone 3) and will be published in this document. Until then, counts above are reported without a precision claim.
+
+### Noise management
+
+Reviewed-and-accepted matches can be recorded so repeat CI runs only surface new findings:
+
+- Inline `// glamsterdam-ignore` or `// glamsterdam-ignore: <detector>` markers.
+- A `glamsterdam-baseline.json` suppression file at the scan root.
+
+Suppression usage in demo repositories is reported in demo notes so reviewers can see how much triage was needed.
 
 ## Raw Slither vs AISolidityAuditor comparison
 

@@ -40,13 +40,14 @@ Grant funding is requested to validate, harden, demonstrate, and release this MV
    - Add end-to-end Action tests and CI validation for readiness artifact generation.
    - Document mode usage, limitations, and reviewer-facing evidence boundaries.
 
-2. **Run two public repo demos**
-   - Run `mode: glamsterdam-readiness` on 2 public Solidity repositories.
-   - Publish demo notes with commit SHA, setup assumptions, Slither counts, readiness counts, SARIF tags, and artifacts.
+2. **Run two public repo demos** — *status: 1 of 2 completed*
+   - Completed: [transmissions11/solmate](https://github.com/transmissions11/solmate) at a pinned commit, with published artifacts, an end-to-end Action run (SARIF code-scanning upload, artifacts, PR comment), and recorded evidence links.
+   - Within the grant period: a second demo (OpenZeppelin Contracts or Uniswap v4-core) and an optional third, each with commit SHA, setup assumptions, Slither counts, readiness counts, SARIF tags, and artifacts.
 
 3. **Improve heuristic precision and false-positive handling**
-   - Continue reducing comment/string false positives and document detector-specific guidance.
-   - Expand readiness evaluation fixtures and benchmark notes.
+   - Shipped: per-rule confidence levels, rule rationales, fork-candidate (EIP) linkage, inline `glamsterdam-ignore` suppression, and a `glamsterdam-baseline.json` suppression file.
+   - Within the grant period: execute the published false-positive measurement protocol (sampled two-reviewer classification per detector) and publish per-detector precision in the benchmark report.
+   - Continue reducing comment/string false positives and expand readiness evaluation fixtures.
 
 4. **Publish benchmark notes and demo artifacts**
    - Publish benchmark comparisons and real-project demo artifacts for grant reviewers.
@@ -75,12 +76,13 @@ Suggested allocation:
 - Readiness report and JSON contain readiness heuristics only.
 - SARIF merges both sources with distinct tool/source metadata and Glamsterdam tags on readiness rules only.
 - 30 existing Solidity fixtures continue to pass.
-- At least 2 public Solidity repositories have documented readiness demo runs.
+- At least 2 public Solidity repositories have documented readiness demo runs — *1 completed (solmate, with end-to-end Action evidence); the second and an optional third are grant-period deliverables*.
+- Per-detector readiness false-positive rates are measured and published in the benchmark report — *measurement protocol published; classification is a grant-period deliverable*.
 - Tagged Action release is published.
 
 ## Risks and mitigations
 
 - **Glamsterdam EIPs may change**: findings are conservative readiness prompts, and docs explicitly avoid compatibility guarantees.
 - **False confidence**: Slither output stays separate; readiness heuristics are labeled explicitly and require manual review.
-- **Over-broad heuristics**: checks are documented as review triggers, not vulnerability claims.
+- **Over-broad heuristics**: checks are documented as review triggers, not vulnerability claims; each rule carries an explicit confidence level and rationale, suppression/baseline mechanisms record triage decisions, and per-detector false-positive rates are reported separately in the benchmark.
 - **Complex project compatibility**: demo notes record setup assumptions and limitations instead of hiding failures.
