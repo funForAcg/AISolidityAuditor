@@ -37,6 +37,8 @@ gh workflow run action-e2e-demo.yml
 
 ### Recorded end-to-end runs
 
+Each row links to evidence that the full chain (Action, SARIF code-scanning upload, artifacts, PR comment) executed against pinned solmate.
+
 | Date | Trigger | Action run | Code scanning | PR comment |
 |------|---------|------------|---------------|------------|
 | _pending_ | _pending_ | _pending_ | _pending_ | _pending_ |
