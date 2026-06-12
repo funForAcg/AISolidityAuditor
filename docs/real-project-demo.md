@@ -4,7 +4,7 @@ This guide demonstrates AISolidityAuditor on public Solidity repositories, not o
 
 ## Demo status
 
-The grant one-pager targets at least 2 public repository demos. Current status: **2 completed** (optional third: Uniswap v4-core).
+The formal grant proposal targets at least 2 public repository demos. Current status: **2 completed** (optional third: Uniswap v4-core).
 
 | Repository | Status | Commit | Action run | Artifacts |
 |------------|--------|--------|------------|-----------|
