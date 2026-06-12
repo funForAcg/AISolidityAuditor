@@ -243,7 +243,7 @@ See [docs/benchmark-report.md](docs/benchmark-report.md) for the raw Slither vs 
 
 The current small-grant scope is a **Glamsterdam Solidity Readiness Triage Toolkit**. It builds on AISolidityAuditor to help Ethereum builders review Solidity projects for patterns that may need attention as Glamsterdam candidates evolve, including gas repricing, EVM/opcode assumptions, native ETH transfer logs, block context assumptions, and contract-size discussions.
 
-See [docs/grant-one-pager.md](docs/grant-one-pager.md) for the 6-8 week grant scope.
+See [docs/glamsterdam-solidity-readiness-triage-toolkit-proposal.md](docs/glamsterdam-solidity-readiness-triage-toolkit-proposal.md) for the 6-8 week grant scope.
 
 ## Limitations
 
@@ -378,7 +378,7 @@ The test suite covers upload safety, Slither parsing, finding deduplication, AI 
 | [docs/benchmark-report.md](docs/benchmark-report.md) | Evaluation and benchmark plan |
 | [docs/demo-script.md](docs/demo-script.md) | Demo recording guide |
 | [docs/real-project-demo.md](docs/real-project-demo.md) | Real public Solidity repository demo guide |
-| [docs/grant-one-pager.md](docs/grant-one-pager.md) | Ethereum grant summary |
+| [docs/glamsterdam-solidity-readiness-triage-toolkit-proposal.md](docs/glamsterdam-solidity-readiness-triage-toolkit-proposal.md) | Ethereum grant proposal |
 
 ## Disclaimer
 

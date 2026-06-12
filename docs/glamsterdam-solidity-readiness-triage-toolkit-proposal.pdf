@@ -1,0 +1,171 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Length 3921 >>
+stream
+BT /F2 20.0 Tf 54.0 735.0 Td (Glamsterdam Solidity Readiness Triage Toolkit) Tj ET
+BT /F1 10.2 Tf 54.0 699.6 Td (Proposal for the Ethereum Foundation ESP Glamsterdam Grants Round.) Tj ET
+BT /F2 15.0 Tf 54.0 674.1 Td (Project Overview) Tj ET
+BT /F1 10.2 Tf 54.0 645.3 Td (Glamsterdam Solidity Readiness Triage Toolkit extends AISolidityAuditor, an open-source Solidity) Tj ET
+BT /F1 10.2 Tf 54.0 631.9 Td (security triage assistant. The project provides a GitHub Action and reporting workflow that helps) Tj ET
+BT /F1 10.2 Tf 54.0 618.4 Td (Solidity maintainers identify source patterns that may need manual review as Glamsterdam) Tj ET
+BT /F1 10.2 Tf 54.0 604.9 Td (candidates evolve.) Tj ET
+BT /F1 10.2 Tf 54.0 586.5 Td (The toolkit focuses on review prompts around gas-sensitive loops, low-level EVM usage, native ETH) Tj ET
+BT /F1 10.2 Tf 54.0 573.0 Td (transfer assumptions, block context dependencies, and contract-size watch points. It does not) Tj ET
+BT /F1 10.2 Tf 54.0 559.6 Td (provide a formal audit or a protocol compatibility guarantee. Every result is labeled as requiring) Tj ET
+BT /F1 10.2 Tf 54.0 546.1 Td (manual review.) Tj ET
+BT /F2 15.0 Tf 54.0 520.6 Td (ESP Wishlist Alignment) Tj ET
+BT /F1 10.2 Tf 54.0 491.8 Td (This proposal targets the ESP Wishlist item Glamsterdam Grants Round. The round asks for work that) Tj ET
+BT /F1 10.2 Tf 54.0 478.4 Td (helps the Ethereum community prepare for and adapt to Glamsterdam, including developer tooling) Tj ET
+BT /F1 10.2 Tf 54.0 464.9 Td (updates, impact analysis tooling, monitoring tooling, and data-driven research.) Tj ET
+BT /F1 10.2 Tf 54.0 446.4 Td (This project fits as open-source developer tooling and impact-analysis support for Solidity) Tj ET
+BT /F1 10.2 Tf 54.0 433.0 Td (maintainers. It turns upgrade-readiness checks into reproducible CI artifacts: Markdown reports,) Tj ET
+BT /F1 10.2 Tf 54.0 419.5 Td (JSON outputs, SARIF results, GitHub Action artifacts, and optional PR comments.) Tj ET
+BT /F2 15.0 Tf 54.0 394.0 Td (Problem) Tj ET
+BT /F1 10.2 Tf 54.0 365.2 Td (Protocol upgrades can affect assumptions embedded in contracts and developer workflows. For) Tj ET
+BT /F1 10.2 Tf 54.0 351.8 Td (Glamsterdam, candidate changes such as gas repricing, new EVM capabilities, native ETH transfer) Tj ET
+BT /F1 10.2 Tf 54.0 338.3 Td (logs, ePBS, Block-Level Access Lists, and contract-size discussions may require maintainers to) Tj ET
+BT /F1 10.2 Tf 54.0 324.8 Td (review code patterns that are not traditional vulnerabilities.) Tj ET
+BT /F1 10.2 Tf 54.0 306.4 Td (Small Solidity teams often do not have a repeatable upgrade-readiness checklist or CI artifact for) Tj ET
+BT /F1 10.2 Tf 54.0 292.9 Td (this type of review. Raw static analysis is valuable, but it does not package upgrade-readiness) Tj ET
+BT /F1 10.2 Tf 54.0 279.5 Td (prompts into reviewer-friendly outputs with clear evidence boundaries.) Tj ET
+BT /F2 15.0 Tf 54.0 254.0 Td (Current Base) Tj ET
+BT /F1 10.2 Tf 54.0 225.2 Td (AISolidityAuditor already provides:) Tj ET
+BT /F1 10.2 Tf 54.0 206.7 Td (- Slither integration with raw Slither JSON preservation.) Tj ET
+BT /F1 10.2 Tf 54.0 193.3 Td (- Slither-only audit-report.md and findings.json outputs.) Tj ET
+BT /F1 10.2 Tf 54.0 179.8 Td (- A reusable GitHub Action with mode: glamsterdam-readiness.) Tj ET
+BT /F1 10.2 Tf 54.0 166.3 Td (- Separate glamsterdam-readiness-report.md and glamsterdam-findings.json artifacts.) Tj ET
+BT /F1 10.2 Tf 54.0 152.9 Td (- Combined SARIF with distinct tool/source metadata for Slither and readiness heuristics.) Tj ET
+BT /F1 10.2 Tf 54.0 139.4 Td (- Path-filtered readiness scanning for real Solidity repositories.) Tj ET
+BT /F1 10.2 Tf 54.0 125.9 Td (- 30 Solidity evaluation fixtures.) Tj ET
+BT /F1 10.2 Tf 54.0 112.5 Td (- Assistive AI explanations that always require manual review.) Tj ET
+BT /F1 10.2 Tf 54.0 99.0 Td (- Docker-based verification commands and sandbox documentation.) Tj ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 9 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+5 0 obj
+<< /Length 3982 >>
+stream
+BT /F1 10.2 Tf 54.0 738.0 Td (Baseline public demos have already been completed for solmate and OpenZeppelin Contracts at pinned) Tj ET
+BT /F1 10.2 Tf 54.0 724.5 Td (commits. The demo artifacts document setup assumptions, Slither output, readiness output, SARIF) Tj ET
+BT /F1 10.2 Tf 54.0 711.1 Td (tags, and limitations. Grant funding is requested to validate, harden, measure, and release this) Tj ET
+BT /F1 10.2 Tf 54.0 697.6 Td (MVP for broader ecosystem use, not to build the initial mode from scratch.) Tj ET
+BT /F2 15.0 Tf 54.0 672.1 Td (Proposed Scope: 6-8 Weeks) Tj ET
+BT /F2 12.2 Tf 54.0 643.3 Td (1. Harden and validate Glamsterdam readiness mode) Tj ET
+BT /F1 10.2 Tf 54.0 622.2 Td (- Lock evidence boundaries between Slither findings and readiness heuristics in Markdown, JSON,) Tj ET
+BT /F1 10.2 Tf 71.0 608.8 Td (and SARIF.) Tj ET
+BT /F1 10.2 Tf 54.0 595.3 Td (- Maintain end-to-end Action workflow validation for readiness artifacts, SARIF upload,) Tj ET
+BT /F1 10.2 Tf 71.0 581.8 Td (artifacts, and PR comments.) Tj ET
+BT /F1 10.2 Tf 54.0 568.4 Td (- Document mode usage, path filtering, limitations, and reviewer-facing evidence boundaries.) Tj ET
+BT /F2 12.2 Tf 54.0 549.9 Td (2. Real-project validation and artifact publication) Tj ET
+BT /F1 10.2 Tf 54.0 528.8 Td (- Preserve the completed solmate and OpenZeppelin Contracts baseline demos as public evidence.) Tj ET
+BT /F1 10.2 Tf 54.0 515.4 Td (- Refresh demo artifacts when rule tuning changes output materially.) Tj ET
+BT /F1 10.2 Tf 54.0 501.9 Td (- Add an optional third demo, likely Uniswap v4-core, if CI runtime and setup complexity are) Tj ET
+BT /F1 10.2 Tf 71.0 488.4 Td (reasonable.) Tj ET
+BT /F1 10.2 Tf 54.0 475.0 Td (- Publish a concise validation note for each demo with commit SHA, setup assumptions, Slither) Tj ET
+BT /F1 10.2 Tf 71.0 461.5 Td (status, readiness scope, SARIF tag coverage, and known limitations.) Tj ET
+BT /F2 12.2 Tf 54.0 443.0 Td (3. Improve heuristic precision and false-positive handling) Tj ET
+BT /F1 10.2 Tf 54.0 421.9 Td (- Execute the published false-positive measurement protocol using sampled two-reviewer) Tj ET
+BT /F1 10.2 Tf 71.0 408.5 Td (classification per detector.) Tj ET
+BT /F1 10.2 Tf 54.0 395.0 Td (- Publish per-detector precision notes in the benchmark report.) Tj ET
+BT /F1 10.2 Tf 54.0 381.5 Td (- Tune high-recall rules where the measurement shows excessive noise.) Tj ET
+BT /F1 10.2 Tf 54.0 368.1 Td (- Keep rule metadata explicit: confidence, rationale, related fork candidates, inline) Tj ET
+BT /F1 10.2 Tf 71.0 354.6 Td (suppression, and baseline suppression.) Tj ET
+BT /F2 12.2 Tf 54.0 336.1 Td (4. Publish benchmark notes and documentation) Tj ET
+BT /F1 10.2 Tf 54.0 315.0 Td (- Update the benchmark report with raw Slither vs AISolidityAuditor comparison notes.) Tj ET
+BT /F1 10.2 Tf 54.0 301.6 Td (- Document AI as assistive only, with no model-driven removal of manual review.) Tj ET
+BT /F1 10.2 Tf 54.0 288.1 Td (- Record Foundry, Hardhat, remapping, and CI setup limitations transparently.) Tj ET
+BT /F2 12.2 Tf 54.0 269.6 Td (5. Prepare tagged Action release) Tj ET
+BT /F1 10.2 Tf 54.0 248.5 Td (- Publish a tagged AISolidityAuditor-action@v1 release or equivalent stable Action tag.) Tj ET
+BT /F1 10.2 Tf 54.0 235.1 Td (- Finalize release notes, usage docs, maintenance expectations, and a public completion report.) Tj ET
+BT /F2 15.0 Tf 54.0 209.6 Td (Budget Request) Tj ET
+BT /F1 10.2 Tf 54.0 180.8 Td (Requested budget: USD 12,000 equivalent.) Tj ET
+BT /F1 10.2 Tf 54.0 162.4 Td (Suggested allocation:) Tj ET
+BT /F1 10.2 Tf 54.0 143.9 Td (- Hardening, validation, and evidence-boundary work: 25%) Tj ET
+BT /F1 10.2 Tf 54.0 130.4 Td (- Heuristic precision and fixture/benchmark coverage: 25%) Tj ET
+BT /F1 10.2 Tf 54.0 117.0 Td (- Real-project validation and artifact publication: 25%) Tj ET
+BT /F1 10.2 Tf 54.0 103.5 Td (- Tagged Action release and documentation: 15%) Tj ET
+BT /F1 10.2 Tf 54.0 90.0 Td (- Maintenance buffer: 10%) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 9 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 3574 >>
+stream
+BT /F2 15.0 Tf 54.0 731.0 Td (Deliverables) Tj ET
+BT /F1 10.2 Tf 54.0 702.2 Td (- Open-source GitHub Action with mode: glamsterdam-readiness.) Tj ET
+BT /F1 10.2 Tf 54.0 688.7 Td (- Path-filtered readiness scans via readiness_path.) Tj ET
+BT /F1 10.2 Tf 54.0 675.3 Td (- Separate Slither and Glamsterdam readiness artifacts.) Tj ET
+BT /F1 10.2 Tf 54.0 661.8 Td (- Combined SARIF with distinct source/tool metadata.) Tj ET
+BT /F1 10.2 Tf 54.0 648.3 Td (- At least two documented public repository validation runs.) Tj ET
+BT /F1 10.2 Tf 54.0 634.9 Td (- Published false-positive measurement notes by detector.) Tj ET
+BT /F1 10.2 Tf 54.0 621.4 Td (- Updated benchmark report and demo guide.) Tj ET
+BT /F1 10.2 Tf 54.0 608.0 Td (- Tagged Action release or stable Action tag.) Tj ET
+BT /F1 10.2 Tf 54.0 594.5 Td (- Public final report with links to code, artifacts, SARIF results, and known limitations.) Tj ET
+BT /F2 15.0 Tf 54.0 569.0 Td (Success Metrics) Tj ET
+BT /F1 10.2 Tf 54.0 540.2 Td (- audit-report.md and findings.json contain Slither evidence only.) Tj ET
+BT /F1 10.2 Tf 54.0 526.8 Td (- glamsterdam-readiness-report.md and glamsterdam-findings.json contain readiness heuristics) Tj ET
+BT /F1 10.2 Tf 71.0 513.3 Td (only.) Tj ET
+BT /F1 10.2 Tf 54.0 499.8 Td (- SARIF merges both sources with distinct tool/source metadata and Glamsterdam tags on readiness) Tj ET
+BT /F1 10.2 Tf 71.0 486.4 Td (rules only.) Tj ET
+BT /F1 10.2 Tf 54.0 472.9 Td (- 30 existing Solidity evaluation fixtures continue to pass.) Tj ET
+BT /F1 10.2 Tf 54.0 459.4 Td (- At least two public Solidity repositories have documented readiness validation runs.) Tj ET
+BT /F1 10.2 Tf 54.0 446.0 Td (- Per-detector readiness false-positive rates are measured and published.) Tj ET
+BT /F1 10.2 Tf 54.0 432.5 Td (- A stable tagged GitHub Action release is published.) Tj ET
+BT /F1 10.2 Tf 54.0 419.0 Td (- A public completion report documents deliverables, benchmark findings, demo runs, and) Tj ET
+BT /F1 10.2 Tf 71.0 405.6 Td (limitations.) Tj ET
+BT /F2 15.0 Tf 54.0 380.1 Td (Risks and Mitigations) Tj ET
+BT /F1 10.2 Tf 54.0 351.3 Td (- Glamsterdam EIPs may change: findings are conservative readiness prompts, and documentation) Tj ET
+BT /F1 10.2 Tf 71.0 337.9 Td (avoids compatibility guarantees.) Tj ET
+BT /F1 10.2 Tf 54.0 324.4 Td (- False confidence: Slither findings stay separate from readiness heuristics, and every result) Tj ET
+BT /F1 10.2 Tf 71.0 310.9 Td (requires manual review.) Tj ET
+BT /F1 10.2 Tf 54.0 297.5 Td (- Over-broad heuristics: rules are documented as review triggers, not vulnerability claims;) Tj ET
+BT /F1 10.2 Tf 71.0 284.0 Td (precision is measured separately and high-noise rules can be tuned.) Tj ET
+BT /F1 10.2 Tf 54.0 270.5 Td (- Complex project compatibility: demo notes record setup assumptions and limitations instead of) Tj ET
+BT /F1 10.2 Tf 71.0 257.1 Td (hiding failures.) Tj ET
+BT /F2 15.0 Tf 54.0 231.6 Td (Links) Tj ET
+BT /F1 10.2 Tf 54.0 202.8 Td (- Repository: https://github.com/PXLabs-code/AISolidityAuditor) Tj ET
+BT /F1 10.2 Tf 54.0 189.3 Td (- Real-project demo guide:) Tj ET
+BT /F1 10.2 Tf 71.0 175.9 Td (https://github.com/PXLabs-code/AISolidityAuditor/blob/master/docs/real-project-demo.md) Tj ET
+BT /F1 10.2 Tf 54.0 162.4 Td (- Benchmark report:) Tj ET
+BT /F1 10.2 Tf 71.0 149.0 Td (https://github.com/PXLabs-code/AISolidityAuditor/blob/master/docs/benchmark-report.md) Tj ET
+BT /F1 10.2 Tf 54.0 135.5 Td (- Glamsterdam Wishlist item:) Tj ET
+BT /F1 10.2 Tf 71.0 122.0 Td (https://esp.ethereum.foundation/applicants/wishlist/glamsterdam-round) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 9 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R] /Count 3 >>
+endobj
+10 0 obj
+<< /Type /Catalog /Pages 9 0 R >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000004127 00000 n 
+0000004263 00000 n 
+0000008297 00000 n 
+0000008433 00000 n 
+0000012059 00000 n 
+0000012195 00000 n 
+0000012264 00000 n 
+trailer
+<< /Size 11 /Root 10 0 R >>
+startxref
+12314
+%%EOF
